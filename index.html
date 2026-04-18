@@ -1,335 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <title>PDFsop - Working PDF Tools: Merge, Split, Image to PDF</title>
-    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #f5f9fc; font-family: system-ui, sans-serif; padding: 20px 16px; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .site-header { text-align: center; margin-bottom: 28px; }
-        .site-header h1 { font-size: 2rem; color: #1e5f7a; }
-        .site-header p { color: #4a6f82; margin-top: 8px; }
-        
-        .tool-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 24px; }
-        .tab-btn { background: #e9f2f6; border: none; padding: 10px 20px; border-radius: 60px; font-weight: 600; cursor: pointer; }
-        .tab-btn.active { background: #2c7da0; color: white; }
-        
-        .tool-panel { display: none; background: white; border-radius: 2rem; padding: 28px 24px; border: 1px solid #e2ecf0; margin-bottom: 24px; }
-        .tool-panel.active-panel { display: block; }
-        .tool-panel h2 { color: #1e5f7a; margin-bottom: 20px; }
-        
-        .drop-zone { border: 2px dashed #bdd9e5; border-radius: 1.8rem; background: #fafeff; padding: 28px 20px; text-align: center; cursor: pointer; margin: 12px 0; }
-        .drop-zone:hover { background: #eef5f9; border-color: #2c7da0; }
-        .upload-icon { font-size: 2.2rem; background: #e3f0f5; width: 60px; height: 60px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px; color: #2c7da0; }
-        
-        .primary-btn { background: #2c7da0; width: 100%; border: none; padding: 14px; border-radius: 60px; font-weight: 700; font-size: 1rem; color: white; cursor: pointer; margin: 20px 0 12px; }
-        .primary-btn:disabled { background: #bcd3df; cursor: not-allowed; }
-        
-        .loader { width: 20px; height: 20px; border: 3px solid #cfe6ef; border-top: 3px solid white; border-radius: 50%; animation: spin 0.7s linear infinite; display: inline-block; margin-right: 8px; }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-        
-        .result-area { background: #f0f7fa; border-radius: 1.5rem; padding: 16px; margin-top: 20px; text-align: center; display: none; }
-        .download-btn { display: inline-block; background: #2c7da0; color: white; padding: 8px 22px; border-radius: 60px; text-decoration: none; margin-top: 10px; cursor: pointer; border: none; }
-        .file-list { font-size: 0.75rem; margin: 10px 0; color: #4a6f82; text-align: center; }
-        input { width: 100%; padding: 12px; border-radius: 60px; border: 1px solid #bdd9e5; margin: 8px 0; }
-        
-        .privacy-message { text-align: center; font-size: 0.7rem; color: #6a8ea0; margin-top: 16px; padding: 10px; background: #e9f2f6; border-radius: 40px; }
-        .coming-soon { background: #fff8e0; padding: 12px; border-radius: 1rem; text-align: center; margin-top: 20px; color: #8a6e4e; }
-        
-        .footer { margin-top: 48px; background: #1a3a48; border-radius: 2rem; padding: 28px 20px; color: #d4e6ef; text-align: center; }
-        
-        @media (max-width: 700px) { .tool-panel { padding: 20px 16px; } .tab-btn { padding: 6px 14px; font-size: 0.75rem; } }
-    </style>
+<meta charset="UTF-8">
+<title>PDFsop - Free PDF Tools</title>
+<script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+
+<style>
+body { font-family: Arial; background:#f5f5f5; margin:0; }
+header { background:#2c7da0; color:white; text-align:center; padding:15px; }
+section { background:white; margin:15px; padding:20px; border-radius:10px; }
+button { padding:10px; background:#2c7da0; color:white; border:none; border-radius:5px; margin-top:10px; }
+</style>
 </head>
+
 <body>
-<div class="container">
-    <div class="site-header">
-        <h1>📄 PDFsop.com</h1>
-        <p>Free PDF Tools: Merge, Split, Image to PDF — 100% Private, No Upload</p>
-    </div>
 
-    <div class="tool-tabs">
-        <button class="tab-btn active" data-tool="merge">🔗 Merge PDF</button>
-        <button class="tab-btn" data-tool="split">✂️ Split PDF</button>
-        <button class="tab-btn" data-tool="imagetopdf">🖼️ Image to PDF</button>
-    </div>
+<header>
+<h1>PDFsop</h1>
+<p>Free PDF Tools - Compress, Unlock, Convert</p>
+</header>
 
-    <!-- MERGE PANEL (WORKING) -->
-    <div id="mergePanel" class="tool-panel active-panel">
-        <h2>🔗 Merge PDF Files - Combine Multiple PDFs</h2>
-        <div class="drop-zone" id="mergeDropZone">
-            <div class="upload-icon">➕📄</div>
-            <div><span>📂 Click to select multiple PDF files</span><br>or drag & drop</div>
-            <input type="file" id="mergeFileInput" multiple accept=".pdf" hidden>
-        </div>
-        <div id="mergeFileList" class="file-list"></div>
-        <button class="primary-btn" id="mergeDoBtn" disabled>🔗 Merge Selected PDFs</button>
-        <div id="mergeResult" class="result-area"></div>
-        <div class="privacy-message">✅ Files processed in your browser. Nothing is uploaded. Auto-deleted after download.</div>
-    </div>
+<!-- COMPRESS TOOL -->
+<section>
+<h2>Compress PDF</h2>
+<input type="file" id="compressFile" accept="application/pdf"><br><br>
 
-    <!-- SPLIT PANEL (WORKING) -->
-    <div id="splitPanel" class="tool-panel">
-        <h2>✂️ Split PDF - Extract Pages</h2>
-        <div class="drop-zone" id="splitDropZone">
-            <div class="upload-icon">✂️📄</div>
-            <div><span>📂 Click to select PDF</span><br>or drag & drop</div>
-            <input type="file" id="splitFileInput" accept=".pdf" hidden>
-        </div>
-        <div id="splitFileInfo" class="file-list"></div>
-        <input type="text" id="splitRanges" placeholder="Page ranges example: 1-3,4,5-7">
-        <button class="primary-btn" id="splitDoBtn" disabled>✂️ Split PDF</button>
-        <div id="splitResult" class="result-area"></div>
-        <div class="privacy-message">✅ Files processed in your browser. Nothing is uploaded. Auto-deleted after download.</div>
-    </div>
+<button onclick="setSize(1)">1 MB</button>
+<button onclick="setSize(5)">5 MB</button>
+<button onclick="setSize(10)">10 MB</button>
 
-    <!-- IMAGE TO PDF PANEL (WORKING) -->
-    <div id="imagetopdfPanel" class="tool-panel">
-        <h2>🖼️ Convert Images to PDF</h2>
-        <div class="drop-zone" id="imgDropZone">
-            <div class="upload-icon">🖼️➡️📄</div>
-            <div><span>📂 Click to select images (JPG/PNG)</span><br>or drag & drop</div>
-            <input type="file" id="imgFileInput" multiple accept="image/jpeg,image/png" hidden>
-        </div>
-        <div id="imgFileList" class="file-list"></div>
-        <button class="primary-btn" id="imgToPdfBtn" disabled>🖼️ Create PDF</button>
-        <div id="imgResult" class="result-area"></div>
-        <div class="privacy-message">✅ Images processed in your browser. Nothing is uploaded. Auto-deleted after download.</div>
-    </div>
+<br><br>
+<input type="number" id="customSize" placeholder="Custom size">
+<select id="unit">
+<option value="mb">MB</option>
+<option value="kb">KB</option>
+</select>
 
-    <!-- COMING SOON SECTION -->
-    <div class="coming-soon">
-        🚀 <strong>More tools coming soon:</strong> Compress PDF, Unlock PDF, PDF to Word, Word to PDF are in development and will be added soon!
-    </div>
+<br><br>
+<button onclick="compressPDF()">Compress</button>
 
-    <div class="footer">
-        <p>© 2025 PDFsop.com — 100% client-side PDF tools. Files never leave your device.</p>
-        <p style="margin-top: 10px; font-size: 0.7rem;"><a href="mailto:support@pdfsop.com" style="color: #cde3ec;">support@pdfsop.com</a></p>
-    </div>
-</div>
+<p id="result"></p>
+</section>
+
+<!-- UNLOCK PDF -->
+<section>
+<h2>Unlock PDF</h2>
+<input type="file" id="unlockFile" accept="application/pdf"><br><br>
+<button onclick="unlockPDF()">Unlock</button>
+<p id="unlockResult"></p>
+</section>
+
+<!-- FUTURE TOOLS -->
+<section>
+<h2>More Tools</h2>
+<p>PDF to Word (Coming soon)</p>
+<p>Word to PDF (Coming soon)</p>
+</section>
+
+<!-- PAGES -->
+<section>
+<h2>About Us</h2>
+<p>PDFsop provides free PDF tools. Files are processed in your browser.</p>
+</section>
+
+<section>
+<h2>Contact</h2>
+<p>Email: support@pdfsop.com</p>
+</section>
+
+<section>
+<h2>Privacy Policy</h2>
+<p>No files are uploaded. Everything runs locally.</p>
+</section>
+
+<section>
+<h2>Terms</h2>
+<p>Tools are provided as-is.</p>
+</section>
 
 <script>
-(function() {
-    function formatSize(bytes) {
-        if (bytes === 0) return '0 Bytes';
-        const k = 1024;
-        const sizes = ['Bytes', 'KB', 'MB'];
-        const i = Math.floor(Math.log(bytes) / Math.log(k));
-        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+let targetSize = 5 * 1024 * 1024;
+
+function setSize(mb){
+    targetSize = mb * 1024 * 1024;
+}
+
+async function compressPDF(){
+    const file = document.getElementById("compressFile").files[0];
+    if(!file) return alert("Upload file");
+
+    let custom = document.getElementById("customSize").value;
+    let unit = document.getElementById("unit").value;
+
+    if(custom){
+        targetSize = unit === "kb" ? custom*1024 : custom*1024*1024;
     }
 
-    function showResult(containerId, message, downloadUrl = null, filename = 'output.pdf') {
-        const box = document.getElementById(containerId);
-        box.style.display = 'block';
-        if (downloadUrl) {
-            box.innerHTML = `<div>${message}</div>
-                <div style="margin-top: 12px;">
-                    <a href="${downloadUrl}" download="${filename}" class="download-btn">⬇️ Download</a>
-                    <button class="download-btn" onclick="location.reload()" style="background:#5a8fa8; margin-left:10px;">🔄 New File</button>
-                </div>`;
-            setTimeout(() => URL.revokeObjectURL(downloadUrl), 8000);
-        } else {
-            box.innerHTML = `<div>${message}</div>
-                <div style="margin-top: 12px;">
-                    <button class="download-btn" onclick="location.reload()">🔄 Try Again</button>
-                </div>`;
-        }
+    const bytes = await file.arrayBuffer();
+    const pdf = await PDFLib.PDFDocument.load(bytes);
+
+    const compressed = await pdf.save({useObjectStreams:true});
+    const blob = new Blob([compressed], {type:"application/pdf"});
+
+    const url = URL.createObjectURL(blob);
+    document.getElementById("result").innerHTML =
+        `<a href="${url}" download="compressed.pdf">Download Compressed PDF</a>`;
+}
+
+async function unlockPDF(){
+    const file = document.getElementById("unlockFile").files[0];
+    if(!file) return alert("Upload file");
+
+    try{
+        const bytes = await file.arrayBuffer();
+        const pdf = await PDFLib.PDFDocument.load(bytes, {ignoreEncryption:true});
+        const newPdf = await pdf.save();
+
+        const blob = new Blob([newPdf], {type:"application/pdf"});
+        const url = URL.createObjectURL(blob);
+
+        document.getElementById("unlockResult").innerHTML =
+        `<a href="${url}" download="unlocked.pdf">Download Unlocked PDF</a>`;
+    }catch(e){
+        alert("Cannot unlock this file");
     }
-
-    // ============ TAB SWITCHING ============
-    const tabs = document.querySelectorAll('.tab-btn');
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            const tool = tab.getAttribute('data-tool');
-            document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active-panel'));
-            document.getElementById(tool + 'Panel').classList.add('active-panel');
-            tabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-        });
-    });
-
-    // ============ MERGE PDF (WORKING) ============
-    let mergeFiles = [];
-    const mergeZone = document.getElementById('mergeDropZone');
-    const mergeInput = document.getElementById('mergeFileInput');
-    const mergeList = document.getElementById('mergeFileList');
-    const mergeBtn = document.getElementById('mergeDoBtn');
-    
-    function updateMergeUI() {
-        if (mergeFiles.length >= 2) {
-            mergeList.innerHTML = mergeFiles.map((f, i) => `${i+1}. ${f.name} (${formatSize(f.size)})`).join('<br>');
-            mergeBtn.disabled = false;
-        } else {
-            mergeList.innerHTML = mergeFiles.length === 1 ? 'Add at least 2 PDF files to merge' : '';
-            mergeBtn.disabled = true;
-        }
-    }
-    
-    mergeZone.addEventListener('click', () => mergeInput.click());
-    mergeInput.addEventListener('change', (e) => {
-        mergeFiles = Array.from(e.target.files);
-        updateMergeUI();
-    });
-    mergeZone.addEventListener('dragover', (e) => e.preventDefault());
-    mergeZone.addEventListener('drop', (e) => {
-        e.preventDefault();
-        mergeFiles = Array.from(e.dataTransfer.files).filter(f => f.type === 'application/pdf');
-        updateMergeUI();
-    });
-    
-    mergeBtn.addEventListener('click', async () => {
-        if (mergeFiles.length < 2) return;
-        mergeBtn.innerHTML = `<span class="loader"></span> Merging ${mergeFiles.length} files...`;
-        mergeBtn.disabled = true;
-        try {
-            const mergedPdf = await PDFLib.PDFDocument.create();
-            for (const file of mergeFiles) {
-                const bytes = await file.arrayBuffer();
-                const pdf = await PDFLib.PDFDocument.load(bytes);
-                const pages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
-                pages.forEach(page => mergedPdf.addPage(page));
-            }
-            const mergedBytes = await mergedPdf.save();
-            showResult('mergeResult', `✅ Successfully merged ${mergeFiles.length} PDF files! Total size: ${formatSize(mergedBytes.byteLength)}`, URL.createObjectURL(new Blob([mergedBytes])), 'merged.pdf');
-        } catch (err) {
-            showResult('mergeResult', '❌ Error merging PDFs. Make sure all files are valid PDFs.');
-        } finally {
-            mergeBtn.innerHTML = `🔗 Merge Selected PDFs`;
-            mergeBtn.disabled = false;
-        }
-    });
-
-    // ============ SPLIT PDF (WORKING) ============
-    let splitFile = null;
-    const splitZone = document.getElementById('splitDropZone');
-    const splitInput = document.getElementById('splitFileInput');
-    const splitFileInfo = document.getElementById('splitFileInfo');
-    const splitRanges = document.getElementById('splitRanges');
-    const splitBtn = document.getElementById('splitDoBtn');
-    
-    splitZone.addEventListener('click', () => splitInput.click());
-    splitInput.addEventListener('change', (e) => {
-        if (e.target.files[0]) {
-            splitFile = e.target.files[0];
-            splitFileInfo.innerHTML = `📄 ${splitFile.name} (${formatSize(splitFile.size)})`;
-            splitBtn.disabled = false;
-        }
-    });
-    splitZone.addEventListener('dragover', (e) => e.preventDefault());
-    splitZone.addEventListener('drop', (e) => {
-        e.preventDefault();
-        if (e.dataTransfer.files[0] && e.dataTransfer.files[0].type === 'application/pdf') {
-            splitFile = e.dataTransfer.files[0];
-            splitFileInfo.innerHTML = `📄 ${splitFile.name} (${formatSize(splitFile.size)})`;
-            splitBtn.disabled = false;
-        }
-    });
-    
-    splitBtn.addEventListener('click', async () => {
-        if (!splitFile || !splitRanges.value) {
-            alert('Please select a PDF file and enter page ranges (e.g., 1-3,4,5-7)');
-            return;
-        }
-        splitBtn.innerHTML = `<span class="loader"></span> Splitting...`;
-        splitBtn.disabled = true;
-        try {
-            const bytes = await splitFile.arrayBuffer();
-            const src = await PDFLib.PDFDocument.load(bytes);
-            const totalPages = src.getPageCount();
-            const parts = splitRanges.value.split(',').map(r => r.trim());
-            let successCount = 0;
-            
-            for (let part of parts) {
-                let [start, end] = part.split('-').map(Number);
-                if (isNaN(start)) continue;
-                if (isNaN(end)) end = start;
-                if (start < 1 || end > totalPages) {
-                    alert(`Range ${start}-${end} invalid. Total pages: ${totalPages}`);
-                    continue;
-                }
-                const newDoc = await PDFLib.PDFDocument.create();
-                for (let i = start; i <= end; i++) {
-                    const [copiedPage] = await newDoc.copyPages(src, [i - 1]);
-                    newDoc.addPage(copiedPage);
-                }
-                const splitBytes = await newDoc.save();
-                const blob = new Blob([splitBytes], { type: 'application/pdf' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `pages_${start}-${end}.pdf`;
-                a.click();
-                setTimeout(() => URL.revokeObjectURL(url), 3000);
-                successCount++;
-            }
-            showResult('splitResult', `✅ Split complete! ${successCount} file(s) downloaded.`);
-        } catch (err) {
-            showResult('splitResult', '❌ Error splitting PDF. Check your page ranges.');
-        } finally {
-            splitBtn.innerHTML = `✂️ Split PDF`;
-            splitBtn.disabled = false;
-        }
-    });
-
-    // ============ IMAGE TO PDF (WORKING) ============
-    let imgFiles = [];
-    const imgZone = document.getElementById('imgDropZone');
-    const imgInput = document.getElementById('imgFileInput');
-    const imgList = document.getElementById('imgFileList');
-    const imgBtn = document.getElementById('imgToPdfBtn');
-    
-    function updateImgUI() {
-        if (imgFiles.length > 0) {
-            imgList.innerHTML = imgFiles.map((f, i) => `${i+1}. ${f.name} (${formatSize(f.size)})`).join('<br>');
-            imgBtn.disabled = false;
-        } else {
-            imgList.innerHTML = '';
-            imgBtn.disabled = true;
-        }
-    }
-    
-    imgZone.addEventListener('click', () => imgInput.click());
-    imgInput.addEventListener('change', (e) => {
-        imgFiles = Array.from(e.target.files);
-        updateImgUI();
-    });
-    imgZone.addEventListener('dragover', (e) => e.preventDefault());
-    imgZone.addEventListener('drop', (e) => {
-        e.preventDefault();
-        imgFiles = Array.from(e.dataTransfer.files).filter(f => f.type === 'image/jpeg' || f.type === 'image/png');
-        updateImgUI();
-    });
-    
-    imgBtn.addEventListener('click', async () => {
-        if (imgFiles.length === 0) return;
-        imgBtn.innerHTML = `<span class="loader"></span> Creating PDF from ${imgFiles.length} images...`;
-        imgBtn.disabled = true;
-        try {
-            const pdf = await PDFLib.PDFDocument.create();
-            for (const img of imgFiles) {
-                const bytes = await img.arrayBuffer();
-                let image;
-                if (img.type === 'image/jpeg') {
-                    image = await pdf.embedJpg(bytes);
-                } else {
-                    image = await pdf.embedPng(bytes);
-                }
-                const page = pdf.addPage([image.width, image.height]);
-                page.drawImage(image, { x: 0, y: 0, width: image.width, height: image.height });
-            }
-            const pdfBytes = await pdf.save();
-            showResult('imgResult', `✅ PDF created successfully with ${imgFiles.length} image(s)! Size: ${formatSize(pdfBytes.byteLength)}`, URL.createObjectURL(new Blob([pdfBytes])), 'images.pdf');
-        } catch (err) {
-            showResult('imgResult', '❌ Error creating PDF from images. Make sure files are valid JPG/PNG.');
-        } finally {
-            imgBtn.innerHTML = `🖼️ Create PDF`;
-            imgBtn.disabled = false;
-        }
-    });
-})();
+}
 </script>
+
 </body>
 </html>
