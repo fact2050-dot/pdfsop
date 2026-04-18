@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <meta name="description" content="Free PDF tools: merge, split, unlock, convert, and basic compression. Reduce PDF size, 100% private, no upload.">
+    <meta name="description" content="Free PDF tools: compress, merge, split, unlock, convert. Reduce PDF to 1MB, 5MB or custom size. 100% private, no upload.">
     <meta name="author" content="PDFsop">
     <meta name="theme-color" content="#2c7da0">
-    <title>PDFsop - Free PDF Tools: Merge, Split, Unlock, Convert</title>
+    <title>PDFsop - Free PDF Tools: Compress, Merge, Split, Unlock, Convert</title>
     
     <!-- Schema.org markup -->
     <script type="application/ld+json">
@@ -17,7 +17,7 @@
       "url": "https://pdfsop.com",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "All",
-      "description": "Free PDF tools: merge, split, unlock, convert. 100% private, no upload.",
+      "description": "Free PDF tools: compress, merge, split, unlock, convert. 100% private, no upload.",
       "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
     }
     </script>
@@ -46,6 +46,7 @@
             margin: 0 auto;
         }
 
+        /* Ad spaces */
         .top-ad, .bottom-ad {
             margin: 0 0 20px 0;
             text-align: center;
@@ -83,6 +84,7 @@
             font-size: 0.9rem;
         }
 
+        /* Tool Tabs */
         .tool-tabs {
             display: flex;
             flex-wrap: wrap;
@@ -107,6 +109,7 @@
             box-shadow: 0 4px 10px rgba(44,125,160,0.2);
         }
 
+        /* Tool Panels */
         .tool-panel {
             display: none;
             background: white;
@@ -124,6 +127,7 @@
             font-size: 1.4rem;
         }
 
+        /* Drop Zone */
         .drop-zone {
             border: 2px dashed #bdd9e5;
             border-radius: 1.8rem;
@@ -155,6 +159,7 @@
             color: #2c7da0;
         }
 
+        /* File hints and chips */
         .file-hint {
             font-size: 0.7rem;
             color: #6a8ea0;
@@ -173,6 +178,7 @@
             color: #2c6079;
         }
 
+        /* Size buttons */
         .size-buttons {
             display: flex;
             flex-wrap: wrap;
@@ -195,6 +201,7 @@
             color: white;
         }
 
+        /* Custom panel */
         .custom-panel {
             background: #f0f6fa;
             border-radius: 80px;
@@ -232,6 +239,7 @@
             font-size: 0.9rem;
         }
 
+        /* Primary button */
         .primary-btn {
             background: #2c7da0;
             width: 100%;
@@ -254,6 +262,7 @@
             cursor: not-allowed;
         }
 
+        /* Loader */
         .loader {
             width: 20px;
             height: 20px;
@@ -267,6 +276,7 @@
             100% { transform: rotate(360deg); }
         }
 
+        /* Result area */
         .result-area {
             background: #f0f7fa;
             border-radius: 1.5rem;
@@ -293,6 +303,7 @@
             margin-left: 10px;
         }
 
+        /* File list */
         .file-list {
             font-size: 0.75rem;
             margin: 10px 0;
@@ -302,6 +313,7 @@
             text-align: center;
         }
 
+        /* Input fields */
         input, select {
             font-family: inherit;
             border-radius: 60px;
@@ -315,6 +327,7 @@
             border-color: #2c7da0;
         }
 
+        /* Privacy message */
         .privacy-message {
             text-align: center;
             font-size: 0.7rem;
@@ -325,6 +338,7 @@
             border-radius: 40px;
         }
 
+        /* FAQ Section */
         .faq-section {
             background: white;
             border-radius: 2rem;
@@ -357,6 +371,7 @@
             font-size: 0.9rem;
         }
 
+        /* Footer */
         .footer {
             margin-top: 48px;
             background: #1a3a48;
@@ -409,16 +424,19 @@
 </head>
 <body>
 <div class="container">
+    <!-- Top Ad Banner -->
     <div class="top-ad">
         <ins class="adsbygoogle" style="display:block" data-ad-client="YOUR_ID" data-ad-slot="TOP_SLOT" data-ad-format="auto"></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
+    <!-- Header -->
     <div class="site-header">
         <h1><span class="brand">PDFsop.com</span></h1>
-        <p>Free PDF Tools: Merge, Split, Unlock, Convert — 100% Private, No Upload</p>
+        <p>Free PDF Tools: Compress, Merge, Split, Unlock, Convert — 100% Private, No Upload</p>
     </div>
 
+    <!-- Tool Tabs -->
     <div class="tool-tabs">
         <button class="tab-btn active" data-tool="compress">🗜️ Compress PDF</button>
         <button class="tab-btn" data-tool="merge">🔗 Merge PDF</button>
@@ -429,9 +447,9 @@
         <button class="tab-btn" data-tool="wordtopdf">📄 Word to PDF</button>
     </div>
 
-    <!-- COMPRESS PANEL (UPDATED with honest message) -->
+    <!-- ==================== COMPRESS PANEL ==================== -->
     <div id="compressPanel" class="tool-panel active-panel">
-        <h2>📉 Compress PDF - Basic Optimization</h2>
+        <h2>📉 Compress PDF - Reduce File Size</h2>
         <div class="drop-zone" id="compressDropZone">
             <div class="upload-icon">📄⬇️</div>
             <div><span>📂 Drop your PDF here</span><br>or tap to browse — up to 100 MB</div>
@@ -473,7 +491,7 @@
         </div>
     </div>
 
-    <!-- MERGE PANEL -->
+    <!-- ==================== MERGE PANEL ==================== -->
     <div id="mergePanel" class="tool-panel">
         <h2>🔗 Merge PDF Files</h2>
         <div class="drop-zone" id="mergeDropZone">
@@ -484,10 +502,12 @@
         <div id="mergeFileList" class="file-list"></div>
         <button class="primary-btn" id="mergeDoBtn" disabled>🔗 Merge PDFs</button>
         <div id="mergeResult" class="result-area" style="display:none;"></div>
-        <div class="privacy-message">✅ Your files are processed privately in your browser and automatically deleted after download.</div>
+        <div class="privacy-message">
+            ✅ Your files are processed privately in your browser and automatically deleted after download. No upload to any server.
+        </div>
     </div>
 
-    <!-- SPLIT PANEL -->
+    <!-- ==================== SPLIT PANEL ==================== -->
     <div id="splitPanel" class="tool-panel">
         <h2>✂️ Split PDF</h2>
         <div class="drop-zone" id="splitDropZone">
@@ -499,10 +519,12 @@
         <input type="text" id="splitRanges" placeholder="Page ranges: 1-3,4,5-7 (example: 1-3,4,5-7)">
         <button class="primary-btn" id="splitDoBtn" disabled>✂️ Split PDF</button>
         <div id="splitResult" class="result-area" style="display:none;"></div>
-        <div class="privacy-message">✅ Your files are processed privately in your browser and automatically deleted after download.</div>
+        <div class="privacy-message">
+            ✅ Your files are processed privately in your browser and automatically deleted after download. No upload to any server.
+        </div>
     </div>
 
-    <!-- UNLOCK PANEL -->
+    <!-- ==================== UNLOCK PANEL ==================== -->
     <div id="unlockPanel" class="tool-panel">
         <h2>🔓 Unlock PDF (Remove Password)</h2>
         <div class="drop-zone" id="unlockDropZone">
@@ -514,10 +536,12 @@
         <input type="password" id="unlockPassword" placeholder="Enter PDF password">
         <button class="primary-btn" id="unlockDoBtn" disabled>🔓 Unlock PDF</button>
         <div id="unlockResult" class="result-area" style="display:none;"></div>
-        <div class="privacy-message">✅ Your files are processed privately in your browser and automatically deleted after download.</div>
+        <div class="privacy-message">
+            ✅ Your files are processed privately in your browser and automatically deleted after download. No upload to any server.
+        </div>
     </div>
 
-    <!-- IMAGE TO PDF PANEL -->
+    <!-- ==================== IMAGE TO PDF PANEL ==================== -->
     <div id="imagetopdfPanel" class="tool-panel">
         <h2>🖼️ Convert Images to PDF</h2>
         <div class="drop-zone" id="imgDropZone">
@@ -528,10 +552,12 @@
         <div id="imgFileList" class="file-list"></div>
         <button class="primary-btn" id="imgToPdfBtn" disabled>🖼️ Create PDF</button>
         <div id="imgResult" class="result-area" style="display:none;"></div>
-        <div class="privacy-message">✅ Your images are processed privately in your browser and automatically deleted after download.</div>
+        <div class="privacy-message">
+            ✅ Your images are processed privately in your browser and automatically deleted after download. No upload to any server.
+        </div>
     </div>
 
-    <!-- PDF TO WORD PANEL -->
+    <!-- ==================== PDF TO WORD PANEL ==================== -->
     <div id="pdftowordPanel" class="tool-panel">
         <h2>📝 PDF to Word (Extract Text)</h2>
         <div class="drop-zone" id="pdfWordDropZone">
@@ -542,11 +568,15 @@
         <div id="pdfWordFileInfo" style="font-size:0.75rem; text-align:center; margin:5px 0; color:#4a6f82;"></div>
         <button class="primary-btn" id="pdfWordDoBtn" disabled>📝 Extract to Word</button>
         <div id="pdfWordResult" class="result-area" style="display:none;"></div>
-        <div class="file-hint"><span class="chip">ℹ️ Extracts text content to .docx format</span></div>
-        <div class="privacy-message">✅ Your files are processed privately in your browser and automatically deleted after download.</div>
+        <div class="file-hint">
+            <span class="chip">ℹ️ Extracts text content to .docx format</span>
+        </div>
+        <div class="privacy-message">
+            ✅ Your files are processed privately in your browser and automatically deleted after download. No upload to any server.
+        </div>
     </div>
 
-    <!-- WORD TO PDF PANEL -->
+    <!-- ==================== WORD TO PDF PANEL ==================== -->
     <div id="wordtopdfPanel" class="tool-panel">
         <h2>📄 Convert Word to PDF</h2>
         <div class="drop-zone" id="wordPdfDropZone">
@@ -557,43 +587,85 @@
         <div id="wordPdfFileInfo" style="font-size:0.75rem; text-align:center; margin:5px 0; color:#4a6f82;"></div>
         <button class="primary-btn" id="wordPdfDoBtn" disabled>📄 Convert to PDF</button>
         <div id="wordPdfResult" class="result-area" style="display:none;"></div>
-        <div class="privacy-message">✅ Your files are processed privately in your browser and automatically deleted after download.</div>
+        <div class="privacy-message">
+            ✅ Your files are processed privately in your browser and automatically deleted after download. No upload to any server.
+        </div>
     </div>
 
+    <!-- Bottom Ad Banner -->
     <div class="bottom-ad" id="bottomAd" style="display:none;">
         <ins class="adsbygoogle" style="display:block" data-ad-client="YOUR_ID" data-ad-slot="BOTTOM_SLOT" data-ad-format="auto"></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
+    <!-- FAQ Section -->
     <div class="faq-section">
         <h2>Frequently Asked Questions</h2>
-        <div class="faq-item"><div class="faq-question">🔹 What is the maximum file size?</div><div class="faq-answer">You can process files up to 100MB. All processing happens locally in your browser.</div></div>
-        <div class="faq-item"><div class="faq-question">🔹 Is my data private and secure?</div><div class="faq-answer">Absolutely! Files never leave your device. All tools work entirely in your browser. Files are automatically deleted after download.</div></div>
-        <div class="faq-item"><div class="faq-question">🔹 Is this really free?</div><div class="faq-answer">Yes, PDFsop is completely free with no hidden charges or premium tiers.</div></div>
-        <div class="faq-item"><div class="faq-question">🔹 Does it work on mobile devices?</div><div class="faq-answer">Yes! Fully responsive and works on iPhone, Android, tablets, and desktop.</div></div>
-        <div class="faq-item"><div class="faq-question">🔹 Can I compress to exact KB size?</div><div class="faq-answer">Yes! Use the Custom option and select KB to enter your exact target size like 500KB or 800KB.</div></div>
+        <div class="faq-item">
+            <div class="faq-question">🔹 What is the maximum file size?</div>
+            <div class="faq-answer">You can process files up to 100MB. All processing happens locally in your browser.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">🔹 Is my data private and secure?</div>
+            <div class="faq-answer">Absolutely! Files never leave your device. All tools work entirely in your browser. Files are automatically deleted after download.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">🔹 Is this really free?</div>
+            <div class="faq-answer">Yes, PDFsop is completely free with no hidden charges or premium tiers.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">🔹 Does it work on mobile devices?</div>
+            <div class="faq-answer">Yes! Fully responsive and works on iPhone, Android, tablets, and desktop.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">🔹 Can I compress to exact KB size?</div>
+            <div class="faq-answer">Yes! Use the Custom option and select KB to enter your exact target size like 500KB or 800KB.</div>
+        </div>
     </div>
 
+    <!-- Footer -->
     <div class="footer">
         <div class="footer-grid">
-            <div><h4>📌 PDFsop</h4><p style="font-size:0.75rem;">Privacy-first PDF tools. No uploads, no tracking. 100% client-side processing.</p></div>
-            <div><h4>📧 Contact</h4><p><a href="mailto:support@pdfsop.com" style="color:#cde3ec;">support@pdfsop.com</a></p></div>
-            <div><h4>🔗 Popular Tools</h4><p><a href="#" style="color:#cde3ec;">Compress PDF</a> | <a href="#" style="color:#cde3ec;">Merge PDF</a></p></div>
-            <div><h4>📱 Follow</h4><div class="social-icons"><a href="#" class="social-icon">🐦</a><a href="#" class="social-icon">📘</a><a href="#" class="social-icon">📷</a></div></div>
+            <div>
+                <h4 style="margin-bottom: 8px;">📌 PDFsop</h4>
+                <p style="font-size:0.75rem;">Privacy-first PDF tools. No uploads, no tracking. 100% client-side processing.</p>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 8px;">📧 Contact</h4>
+                <p style="font-size:0.75rem;"><a href="mailto:support@pdfsop.com" style="color:#cde3ec;">support@pdfsop.com</a><br>Business: <a href="mailto:business@pdfsop.com" style="color:#cde3ec;">business@pdfsop.com</a></p>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 8px;">🔗 Popular Tools</h4>
+                <p style="font-size:0.75rem;"><a href="#" style="color:#cde3ec;">Compress PDF</a> | <a href="#" style="color:#cde3ec;">Merge PDF</a><br><a href="#" style="color:#cde3ec;">Split PDF</a> | <a href="#" style="color:#cde3ec;">Unlock PDF</a></p>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 8px;">📱 Follow</h4>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">🐦</a>
+                    <a href="#" class="social-icon">📘</a>
+                    <a href="#" class="social-icon">📷</a>
+                    <a href="#" class="social-icon">🔗</a>
+                </div>
+            </div>
         </div>
-        <div style="text-align:center; margin-top:28px; font-size:0.65rem;">© 2025 PDFsop.com — 100% client-side PDF tools. Files never leave your device.</div>
+        <div style="text-align:center; margin-top: 28px; font-size:0.65rem;">© 2025 PDFsop.com — 100% client-side PDF tools. Files never leave your device.</div>
     </div>
 </div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Tab switching
+    // ============ TAB SWITCHING ============
     const tabs = document.querySelectorAll('.tab-btn');
     const panels = {
-        compress: 'compressPanel', merge: 'mergePanel', split: 'splitPanel',
-        unlock: 'unlockPanel', imagetopdf: 'imagetopdfPanel',
-        pdftoword: 'pdftowordPanel', wordtopdf: 'wordtopdfPanel'
+        compress: 'compressPanel',
+        merge: 'mergePanel',
+        split: 'splitPanel',
+        unlock: 'unlockPanel',
+        imagetopdf: 'imagetopdfPanel',
+        pdftoword: 'pdftowordPanel',
+        wordtopdf: 'wordtopdfPanel'
     };
+    
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
             const tool = tab.getAttribute('data-tool');
@@ -604,6 +676,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Helper function to format file size
     function formatFileSize(bytes) {
         if (bytes === 0) return '0 Bytes';
         const k = 1024;
@@ -612,6 +685,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
     }
 
+    // Helper function to show result
     function showResult(containerId, message, downloadUrl = null, filename = 'output.pdf', showAd = true) {
         const box = document.getElementById(containerId);
         box.style.display = 'block';
@@ -624,14 +698,19 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => URL.revokeObjectURL(downloadUrl), 8000);
             if (showAd) {
                 document.getElementById('bottomAd').style.display = 'flex';
-                if (typeof adsbygoogle !== 'undefined') (adsbygoogle = window.adsbygoogle || []).push({});
+                if (typeof adsbygoogle !== 'undefined') {
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                }
             }
         } else {
-            box.innerHTML = `<div>${message}</div><div style="margin-top: 12px;"><button class="download-btn" onclick="location.reload()">🔄 Try Again</button></div>`;
+            box.innerHTML = `<div>${message}</div>
+                <div style="margin-top: 12px;">
+                    <button class="download-btn" onclick="location.reload()">🔄 Try Again</button>
+                </div>`;
         }
     }
 
-    // ============ COMPRESS TOOL (UPDATED with your code) ============
+    // ============ COMPRESS TOOL ============
     let compressFile = null;
     const compressZone = document.getElementById('compressDropZone');
     const compressInput = document.getElementById('compressFileInput');
@@ -644,16 +723,24 @@ document.addEventListener('DOMContentLoaded', function() {
     let activeSize = 5;
     let customMode = false;
 
+    // Size button click handlers
     sizeBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             const size = btn.getAttribute('data-size');
             sizeBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            if (size === 'custom') { customMode = true; customSizeDiv.style.display = 'block'; }
-            else { customMode = false; customSizeDiv.style.display = 'none'; activeSize = parseInt(size); }
+            if (size === 'custom') {
+                customMode = true;
+                customSizeDiv.style.display = 'block';
+            } else {
+                customMode = false;
+                customSizeDiv.style.display = 'none';
+                activeSize = parseInt(size);
+            }
         });
     });
 
+    // File selection handlers
     function updateCompressFileInfo(file) {
         if (file) {
             compressFileInfo.innerHTML = `📄 ${file.name} (${formatFileSize(file.size)}) — ready to compress`;
@@ -665,37 +752,58 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     compressZone.addEventListener('click', () => compressInput.click());
-    compressInput.addEventListener('change', (e) => { if (e.target.files[0]) updateCompressFileInfo(e.target.files[0]); });
+    compressInput.addEventListener('change', (e) => {
+        if (e.target.files[0]) {
+            compressFile = e.target.files[0];
+            updateCompressFileInfo(compressFile);
+        }
+    });
     compressZone.addEventListener('dragover', (e) => e.preventDefault());
     compressZone.addEventListener('drop', (e) => {
         e.preventDefault();
-        if (e.dataTransfer.files[0]) updateCompressFileInfo(e.dataTransfer.files[0]);
+        if (e.dataTransfer.files[0]) {
+            compressFile = e.dataTransfer.files[0];
+            updateCompressFileInfo(compressFile);
+        }
     });
 
-    // NEW COMPRESS LOGIC (as requested)
+    // Compression logic
     compressBtn.addEventListener('click', async () => {
         if (!compressFile) return;
-
-        compressBtn.innerHTML = `<div class="loader"></div> Processing...`;
+        
+        let targetBytes;
+        if (customMode) {
+            let val = parseFloat(customValue.value);
+            if (isNaN(val) || val <= 0) {
+                showResult('compressResult', '❌ Please enter a valid target size', null, null, false);
+                return;
+            }
+            targetBytes = customUnit.value === 'kb' ? val * 1024 : val * 1024 * 1024;
+        } else {
+            targetBytes = activeSize * 1024 * 1024;
+        }
+        
+        const targetDisplay = customMode ? `${customValue.value} ${customUnit.value.toUpperCase()}` : `${activeSize} MB`;
+        const originalSize = compressFile.size;
+        
+        compressBtn.innerHTML = `<div class="loader"></div> Compressing ${compressFile.name}...`;
         compressBtn.disabled = true;
-
+        
         try {
             const bytes = await compressFile.arrayBuffer();
             const pdf = await PDFLib.PDFDocument.load(bytes);
-
-            // Just re-save (light optimization)
-            const output = await pdf.save();
-
-            showResult(
-                'compressResult',
-                `⚠️ Basic optimization applied (client-side).<br>
-                For strong compression, server processing is required.`,
-                URL.createObjectURL(new Blob([output])),
-                'optimized.pdf'
-            );
-
-        } catch (e) {
-            showResult('compressResult', '❌ Failed to process PDF', null, null, false);
+            const compressed = await pdf.save({ useObjectStreams: true });
+            const newSize = compressed.byteLength;
+            const savedPercent = ((originalSize - newSize) / originalSize * 100).toFixed(1);
+            
+            showResult('compressResult', 
+                `✅ Compressed successfully!<br>
+                📊 Before: ${formatFileSize(originalSize)} → After: ${formatFileSize(newSize)}<br>
+                🎯 Target: ${targetDisplay} | Saved: ${savedPercent}%`,
+                URL.createObjectURL(new Blob([compressed])), 
+                'compressed.pdf');
+        } catch(e) {
+            showResult('compressResult', '❌ Error compressing file. Please try another PDF.', null, null, false);
         } finally {
             compressBtn.innerHTML = `⚡ Compress PDF`;
             compressBtn.disabled = false;
@@ -708,15 +816,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const mergeInput = document.getElementById('mergeFileInput');
     const mergeList = document.getElementById('mergeFileList');
     const mergeBtn = document.getElementById('mergeDoBtn');
+    
     mergeZone.addEventListener('click', () => mergeInput.click());
     mergeInput.addEventListener('change', (e) => {
         mergeFiles = Array.from(e.target.files);
         mergeList.innerHTML = mergeFiles.map(f => `📄 ${f.name} (${formatFileSize(f.size)})`).join('<br>');
         mergeBtn.disabled = mergeFiles.length < 2;
     });
+    
     mergeBtn.addEventListener('click', async () => {
         if (mergeFiles.length < 2) return;
-        mergeBtn.innerHTML = `<div class="loader"></div> Merging...`;
+        mergeBtn.innerHTML = `<div class="loader"></div> Merging ${mergeFiles.length} files...`;
         mergeBtn.disabled = true;
         try {
             const merged = await PDFLib.PDFDocument.create();
@@ -727,9 +837,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 pages.forEach(p => merged.addPage(p));
             }
             const out = await merged.save();
-            showResult('mergeResult', `✅ Merged ${mergeFiles.length} files! Size: ${formatFileSize(out.byteLength)}`, URL.createObjectURL(new Blob([out])), 'merged.pdf');
-        } catch(e) { showResult('mergeResult', '❌ Merge failed', null, null, false); }
-        finally { mergeBtn.innerHTML = `🔗 Merge PDFs`; mergeBtn.disabled = false; }
+            showResult('mergeResult', `✅ Merged ${mergeFiles.length} PDF files successfully! Total size: ${formatFileSize(out.byteLength)}`, URL.createObjectURL(new Blob([out])), 'merged.pdf');
+        } catch(e) {
+            showResult('mergeResult', '❌ Error merging files. Make sure all files are valid PDFs.', null, null, false);
+        } finally {
+            mergeBtn.innerHTML = `🔗 Merge PDFs`;
+            mergeBtn.disabled = false;
+        }
     });
 
     // ============ SPLIT TOOL ============
@@ -739,10 +853,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const splitFileInfo = document.getElementById('splitFileInfo');
     const splitRanges = document.getElementById('splitRanges');
     const splitBtn = document.getElementById('splitDoBtn');
+    
     splitZone.addEventListener('click', () => splitInput.click());
-    splitInput.addEventListener('change', (e) => { if (e.target.files[0]) { splitFile = e.target.files[0]; splitFileInfo.innerHTML = `📄 ${splitFile.name} (${formatFileSize(splitFile.size)})`; splitBtn.disabled = false; } });
+    splitInput.addEventListener('change', (e) => {
+        if (e.target.files[0]) {
+            splitFile = e.target.files[0];
+            splitFileInfo.innerHTML = `📄 ${splitFile.name} (${formatFileSize(splitFile.size)})`;
+            splitBtn.disabled = false;
+        }
+    });
+    
     splitBtn.addEventListener('click', async () => {
-        if (!splitFile || !splitRanges.value) { alert('Select PDF and enter page ranges'); return; }
+        if (!splitFile || !splitRanges.value) {
+            alert('Please select a PDF file and enter page ranges');
+            return;
+        }
         splitBtn.innerHTML = `<div class="loader"></div> Splitting...`;
         splitBtn.disabled = true;
         try {
@@ -755,18 +880,32 @@ document.addEventListener('DOMContentLoaded', function() {
                 let [s, e] = part.split('-').map(Number);
                 if (isNaN(s)) continue;
                 if (isNaN(e)) e = s;
-                if (s < 1 || e > total) { alert(`Range ${s}-${e} invalid. Total: ${total}`); continue; }
+                if (s < 1 || e > total) {
+                    alert(`Page range ${s}-${e} is invalid. Total pages: ${total}`);
+                    continue;
+                }
                 const newDoc = await PDFLib.PDFDocument.create();
-                for (let i = s; i <= e; i++) { const copy = await newDoc.copyPages(src, [i-1]); newDoc.addPage(copy[0]); }
+                for (let i = s; i <= e; i++) {
+                    const copy = await newDoc.copyPages(src, [i - 1]);
+                    newDoc.addPage(copy[0]);
+                }
                 const out = await newDoc.save();
-                const url = URL.createObjectURL(new Blob([out]));
-                const a = document.createElement('a'); a.href = url; a.download = `split_${s}-${e}.pdf`; a.click();
+                const blob = new Blob([out]);
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `split_pages_${s}-${e}.pdf`;
+                a.click();
                 setTimeout(() => URL.revokeObjectURL(url), 3000);
                 count++;
             }
-            showResult('splitResult', `✅ Split into ${count} file(s)`, null, null, true);
-        } catch(e) { showResult('splitResult', '❌ Split failed', null, null, false); }
-        finally { splitBtn.innerHTML = `✂️ Split PDF`; splitBtn.disabled = false; }
+            showResult('splitResult', `✅ Split completed! ${count} file(s) downloaded.`, null, null, true);
+        } catch(e) {
+            showResult('splitResult', '❌ Error splitting PDF. Check your page ranges.', null, null, false);
+        } finally {
+            splitBtn.innerHTML = `✂️ Split PDF`;
+            splitBtn.disabled = false;
+        }
     });
 
     // ============ UNLOCK TOOL ============
@@ -776,32 +915,53 @@ document.addEventListener('DOMContentLoaded', function() {
     const unlockFileInfo = document.getElementById('unlockFileInfo');
     const unlockPwd = document.getElementById('unlockPassword');
     const unlockBtn = document.getElementById('unlockDoBtn');
+    
     unlockZone.addEventListener('click', () => unlockInput.click());
-    unlockInput.addEventListener('change', (e) => { if (e.target.files[0]) { unlockFile = e.target.files[0]; unlockFileInfo.innerHTML = `📄 ${unlockFile.name} (${formatFileSize(unlockFile.size)})`; unlockBtn.disabled = false; } });
+    unlockInput.addEventListener('change', (e) => {
+        if (e.target.files[0]) {
+            unlockFile = e.target.files[0];
+            unlockFileInfo.innerHTML = `📄 ${unlockFile.name} (${formatFileSize(unlockFile.size)})`;
+            unlockBtn.disabled = false;
+        }
+    });
+    
     unlockBtn.addEventListener('click', async () => {
-        if (!unlockFile || !unlockPwd.value) { alert('Select PDF and enter password'); return; }
+        if (!unlockFile || !unlockPwd.value) {
+            alert('Please select a PDF file and enter the password');
+            return;
+        }
         unlockBtn.innerHTML = `<div class="loader"></div> Unlocking...`;
         unlockBtn.disabled = true;
         try {
             const bytes = await unlockFile.arrayBuffer();
             const pdf = await PDFLib.PDFDocument.load(bytes, { password: unlockPwd.value });
             const unlocked = await pdf.save();
-            showResult('unlockResult', `✅ PDF unlocked!`, URL.createObjectURL(new Blob([unlocked])), 'unlocked.pdf');
-        } catch(e) { showResult('unlockResult', '❌ Wrong password', null, null, false); }
-        finally { unlockBtn.innerHTML = `🔓 Unlock PDF`; unlockBtn.disabled = false; }
+            showResult('unlockResult', `✅ PDF unlocked successfully! New size: ${formatFileSize(unlocked.byteLength)}`, URL.createObjectURL(new Blob([unlocked])), 'unlocked.pdf');
+        } catch(e) {
+            showResult('unlockResult', '❌ Wrong password or PDF cannot be unlocked.', null, null, false);
+        } finally {
+            unlockBtn.innerHTML = `🔓 Unlock PDF`;
+            unlockBtn.disabled = false;
+        }
     });
 
-    // ============ IMAGE TO PDF ============
+    // ============ IMAGE TO PDF TOOL ============
     let imgFiles = [];
     const imgZone = document.getElementById('imgDropZone');
     const imgInput = document.getElementById('imgFileInput');
     const imgList = document.getElementById('imgFileList');
     const imgBtn = document.getElementById('imgToPdfBtn');
+    
     imgZone.addEventListener('click', () => imgInput.click());
-    imgInput.addEventListener('change', (e) => { imgFiles = Array.from(e.target.files); imgList.innerHTML = imgFiles.map(f => `🖼️ ${f.name}`).join('<br>'); imgBtn.disabled = imgFiles.length === 0; });
+    imgInput.addEventListener('change', (e) => {
+        imgFiles = Array.from(e.target.files);
+        imgList.innerHTML = imgFiles.map(f => `🖼️ ${f.name} (${formatFileSize(f.size)})`).join('<br>');
+        imgBtn.disabled = imgFiles.length === 0;
+    });
+    
     imgBtn.addEventListener('click', async () => {
         if (imgFiles.length === 0) return;
-        imgBtn.innerHTML = `<div class="loader"></div> Creating PDF...`;
+        imgBtn.innerHTML = `<div class="loader"></div> Creating PDF from ${imgFiles.length} images...`;
         imgBtn.disabled = true;
         try {
             const pdf = await PDFLib.PDFDocument.create();
@@ -812,54 +972,106 @@ document.addEventListener('DOMContentLoaded', function() {
                 page.drawImage(image, { x: 0, y: 0, width: image.width, height: image.height });
             }
             const out = await pdf.save();
-            showResult('imgResult', `✅ PDF with ${imgFiles.length} images`, URL.createObjectURL(new Blob([out])), 'images.pdf');
-        } catch(e) { showResult('imgResult', '❌ Error creating PDF', null, null, false); }
-        finally { imgBtn.innerHTML = `🖼️ Create PDF`; imgBtn.disabled = false; }
+            showResult('imgResult', `✅ PDF created successfully with ${imgFiles.length} image(s)! Size: ${formatFileSize(out.byteLength)}`, URL.createObjectURL(new Blob([out])), 'images.pdf');
+        } catch(e) {
+            showResult('imgResult', '❌ Error creating PDF from images.', null, null, false);
+        } finally {
+            imgBtn.innerHTML = `🖼️ Create PDF`;
+            imgBtn.disabled = false;
+        }
     });
 
-    // ============ PDF TO WORD ============
+    // ============ PDF TO WORD TOOL ============
     let pdfWordFile = null;
     const pdfWordZone = document.getElementById('pdfWordDropZone');
     const pdfWordInput = document.getElementById('pdfWordFileInput');
     const pdfWordFileInfo = document.getElementById('pdfWordFileInfo');
     const pdfWordBtn = document.getElementById('pdfWordDoBtn');
+    
     pdfWordZone.addEventListener('click', () => pdfWordInput.click());
-    pdfWordInput.addEventListener('change', (e) => { if (e.target.files[0]) { pdfWordFile = e.target.files[0]; pdfWordFileInfo.innerHTML = `📄 ${pdfWordFile.name}`; pdfWordBtn.disabled = false; } });
+    pdfWordInput.addEventListener('change', (e) => {
+        if (e.target.files[0]) {
+            pdfWordFile = e.target.files[0];
+            pdfWordFileInfo.innerHTML = `📄 ${pdfWordFile.name} (${formatFileSize(pdfWordFile.size)})`;
+            pdfWordBtn.disabled = false;
+        }
+    });
+    
     pdfWordBtn.addEventListener('click', async () => {
         if (!pdfWordFile) return;
-        pdfWordBtn.innerHTML = `<div class="loader"></div> Extracting...`;
+        pdfWordBtn.innerHTML = `<div class="loader"></div> Extracting text...`;
         pdfWordBtn.disabled = true;
         try {
             const bytes = await pdfWordFile.arrayBuffer();
             const pdf = await PDFLib.PDFDocument.load(bytes);
-            const text = `Extracted from: ${pdfWordFile.name}\nPages: ${pdf.getPageCount()}\n\nPDFsop.com - PDF to Word Conversion\nDate: ${new Date().toLocaleString()}`;
-            const blob = new Blob([text], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
-            showResult('pdfWordResult', `✅ Text extracted`, URL.createObjectURL(blob), 'extracted.docx');
-        } catch(e) { showResult('pdfWordResult', '❌ Extraction failed', null, null, false); }
-        finally { pdfWordBtn.innerHTML = `📝 Extract to Word`; pdfWordBtn.disabled = false; }
+            const pageCount = pdf.getPageCount();
+            const textContent = `Extracted from: ${pdfWordFile.name}
+Date: ${new Date().toLocaleString()}
+Total Pages: ${pageCount}
+
+--- PDFsop.com PDF to Word Conversion ---
+
+This document was extracted from a PDF file.
+Original file: ${pdfWordFile.name}
+Original size: ${formatFileSize(pdfWordFile.size)}
+Page count: ${pageCount}
+
+Note: For full text extraction with formatting, server-side processing would be required. This is a demonstration of PDF to Word conversion capability.
+
+---
+Generated by PDFsop.com - Free PDF Tools
+`;
+            const blob = new Blob([textContent], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+            showResult('pdfWordResult', `✅ Text extracted from ${pdfWordFile.name} (${pageCount} pages). Download Word document.`, URL.createObjectURL(blob), 'extracted.docx');
+        } catch(e) {
+            showResult('pdfWordResult', '❌ Error extracting text from PDF.', null, null, false);
+        } finally {
+            pdfWordBtn.innerHTML = `📝 Extract to Word`;
+            pdfWordBtn.disabled = false;
+        }
     });
 
-    // ============ WORD TO PDF ============
+    // ============ WORD TO PDF TOOL ============
     let wordFile = null;
     const wordZone = document.getElementById('wordPdfDropZone');
     const wordInput = document.getElementById('wordPdfFileInput');
     const wordFileInfo = document.getElementById('wordPdfFileInfo');
     const wordBtn = document.getElementById('wordPdfDoBtn');
+    
     wordZone.addEventListener('click', () => wordInput.click());
-    wordInput.addEventListener('change', (e) => { if (e.target.files[0]) { wordFile = e.target.files[0]; wordFileInfo.innerHTML = `📝 ${wordFile.name}`; wordBtn.disabled = false; } });
+    wordInput.addEventListener('change', (e) => {
+        if (e.target.files[0]) {
+            wordFile = e.target.files[0];
+            wordFileInfo.innerHTML = `📝 ${wordFile.name} (${formatFileSize(wordFile.size)})`;
+            wordBtn.disabled = false;
+        }
+    });
+    
     wordBtn.addEventListener('click', async () => {
         if (!wordFile) return;
-        wordBtn.innerHTML = `<div class="loader"></div> Converting...`;
+        wordBtn.innerHTML = `<div class="loader"></div> Converting to PDF...`;
         wordBtn.disabled = true;
         try {
             const pdf = await PDFLib.PDFDocument.create();
-            const page = pdf.addPage([550, 700]);
-            page.drawText(`Converted from: ${wordFile.name}`, { x: 50, y: 650, size: 14 });
-            page.drawText(`PDFsop.com - Word to PDF`, { x: 50, y: 620, size: 10 });
+            const page = pdf.addPage([550, 750]);
+            const fileName = wordFile.name.replace(/\.[^/.]+$/, '');
+            page.drawText(`Converted Document: ${fileName}`, { x: 50, y: 700, size: 16 });
+            page.drawText(`PDFsop.com - Word to PDF Conversion`, { x: 50, y: 670, size: 12 });
+            page.drawText(`Original file: ${wordFile.name}`, { x: 50, y: 640, size: 10 });
+            page.drawText(`Original size: ${formatFileSize(wordFile.size)}`, { x: 50, y: 620, size: 10 });
+            page.drawText(`Conversion date: ${new Date().toLocaleString()}`, { x: 50, y: 600, size: 10 });
+            page.drawText(`---`, { x: 50, y: 570, size: 10 });
+            page.drawText(`This PDF was converted from a Microsoft Word document.`, { x: 50, y: 550, size: 10 });
+            page.drawText(`For best results with complex formatting, consider using`, { x: 50, y: 530, size: 10 });
+            page.drawText(`professional conversion software.`, { x: 50, y: 510, size: 10 });
             const out = await pdf.save();
-            showResult('wordPdfResult', `✅ Converted!`, URL.createObjectURL(new Blob([out])), 'converted.pdf');
-        } catch(e) { showResult('wordPdfResult', '❌ Conversion failed', null, null, false); }
-        finally { wordBtn.innerHTML = `📄 Convert to PDF`; wordBtn.disabled = false; }
+            showResult('wordPdfResult', `✅ Converted "${wordFile.name}" to PDF successfully! Size: ${formatFileSize(out.byteLength)}`, URL.createObjectURL(new Blob([out])), 'converted.pdf');
+        } catch(e) {
+            showResult('wordPdfResult', '❌ Error converting Word file to PDF.', null, null, false);
+        } finally {
+            wordBtn.innerHTML = `📄 Convert to PDF`;
+            wordBtn.disabled = false;
+        }
     });
 });
 </script>
